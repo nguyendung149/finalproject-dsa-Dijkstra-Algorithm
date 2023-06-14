@@ -1,6 +1,6 @@
 clc,clear all,close all;
 % Define the range of graph sizes to test
-nValues = 10:10:3000;
+nValues = 10:10:100;
 p = 1; % probability of edge existence
 % Measure the execution time for different graph sizes
 timeElapsed = zeros(size(nValues));
