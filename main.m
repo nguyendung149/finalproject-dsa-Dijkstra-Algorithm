@@ -1,7 +1,7 @@
 clc,clear all,close all;
 % Define the range of graph sizes to test
 nValues = 10:10:3000;
-p = 1; % probability of edge existence
+p = 1;
 % Measure the execution time for different graph sizes
 timeElapsed = zeros(size(nValues));
 for i = 1:length(nValues)
@@ -19,22 +19,21 @@ for i = 1:length(nValues)
     timeElapsed(i) = toc;
 end
 % Plot the results
-figure(1);
+figure(2);
 %hồi quy tuyến tính theo ham log
 mdl = fitlm(nValues', log(timeElapsed'), 'Intercept', true);
 time_fit = exp(predict(mdl, nValues'));
 plot(nValues', time_fit, 'r-', 'LineWidth', 2);
 xlabel('Number of nodes');
 ylabel('Execution time (s)');
-ylim([0,1]);
 title('Execution time as a function of graph size');
 legend('Measured time','Location', 'northwest')
 % Fit a curve to the data and plot the expected time complexity
-figure(2);
+figure(3);
 nEdges = nValues .* (nValues - 1) / 2 * p; % expected number of edges
-logNValues = log(nValues);
-logExpectedTime = log(nEdges) + log(logNValues);
-expectedTime = exp(logExpectedTime);
+logNValues = log2(nValues);
+logExpectedTime = log2(nEdges) + log2(logNValues);
+expectedTime = 2.^(logExpectedTime);
 hold on;
 plot(nValues, expectedTime, '--', 'LineWidth', 2);
-legend( 'Expected time', 'Location', 'northwest');
+legend( 'Complexity (using nVertice and nEdge) ', 'Location', 'northwest');

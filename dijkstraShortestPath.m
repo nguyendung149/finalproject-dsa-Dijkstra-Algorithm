@@ -58,31 +58,31 @@ if currentScore(endNode) < Inf
             unvisited(index)=[];
         end
     end
-    disp(['Path: ', num2str(path)]);
+    %disp(['Path: ', num2str(path)]);
     
-    %In đường đi trên biểu đồ đồ thi
-    weights = [];
-    vertices = [];
-    link = [];
-    index = [];
-    for k = 1:length(Graph)
-        index = find(Graph(k,:) ~= 0);
-        for j = 1:k
-            temp = find(index == j);
-            index(temp) = [];
-        end
-        weights = [weights Graph(k,index)];
-        vertices = [vertices k*ones(1,length(Graph(k,index)))];
-        link = [link index];
-    end
-    
-     G = graph(vertices,link,weights,'omitselfloops');
-    
-     % Lấy danh sách các cạnh trong đường đi
-    % Vẽ biểu đồ đồ thị với màu cạnh được thiết lập
-    h = plot(G, 'Layout', 'force','EdgeLabel',G.Edges.Weight);
-    title("Dijkstra's Algorithm Simulation")
-    highlight(h, path, 'EdgeColor','r', 'LineWidth', 3);
-    currentScore
+%     In đường đi trên biểu đồ đồ thi
+%     weights = [];
+%     vertices = [];
+%     link = [];
+%     index = [];
+%     for k = 1:length(Graph)
+%         index = find(Graph(k,:) ~= 0);
+%         for j = 1:k
+%             temp = find(index == j);
+%             index(temp) = [];
+%         end
+%         weights = [weights Graph(k,index)];
+%         vertices = [vertices k*ones(1,length(Graph(k,index)))];
+%         link = [link index];
+%     end
+%     
+%      G = graph(vertices,link,weights,'omitselfloops');
+%     
+%      % Lấy danh sách các cạnh trong đường đi
+%     % Vẽ biểu đồ đồ thị với màu cạnh được thiết lập
+%     h = plot(G, 'Layout', 'force','EdgeLabel',G.Edges.Weight);
+%     title("Dijkstra's Algorithm Simulation")
+%     highlight(h, path, 'EdgeColor','r', 'LineWidth', 3);
+%     %currentScore
 end
 end
